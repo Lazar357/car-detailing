@@ -1,6 +1,7 @@
 package rs.ac.signidunum.model;
 
 import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 @Entity
@@ -16,16 +17,48 @@ public class Booking {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
-    // Getteri i setteri
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public LocalDate getDate() { return date; }
-    public void setDate(LocalDate date) { this.date = date; }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-    public String getService() { return service; }
-    public void setService(String service) { this.service = service; }
+    public LocalDate getDate() {
+        return date;
+    }
 
-    public Customer getCustomer() { return customer; }
-    public void setCustomer(Customer customer) { this.customer = customer; }
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getService() {
+        return service;
+    }
+
+    public void setService(String service) {
+        this.service = service;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Booking() {
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", date=" + date +
+                ", service='" + service + '\'' +
+                ", customer=" + (customer != null ? customer.getName() : "null") +
+                '}';
+    }
 }

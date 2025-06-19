@@ -1,4 +1,4 @@
-package rs.ac.signidunum.car_detailing;
+package rs.ac.signidunum;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
