@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Auto Detailing Studio</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    .hero {
+      background: url('pictures/pocetna.jpg') center center/cover no-repeat;
+      height: 80vh;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background-color: rgba(0, 0, 0, 0.6);
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .gallery-img {
+      width: 370px;
+      height: 250px;
+      border-radius: 10px;
+    }
+    .map-container{
+      width: 100%;
+      height: 700px;
+    }
+  </style>
+</head>
+<body>
+
+  
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Auto Detailing</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link" href="#services">Usluge</a></li>
+          <li class="nav-item"><a class="nav-link" href="#gallery">Galerija</a></li>
+          <li class="nav-item"><a class="nav-link" href="#reviews">Recenzije</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contact">Kontakt</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  
+  <section class="hero">
+    <div class="hero-content">
+      <h1 class="display-4">Vratite sjaj svom automobilu</h1>
+      <p class="lead">Profesionalni auto detailing u Beogradu</p>
+      <a href="reservation.html" class="btn btn-warning btn-lg">Zakaži termin</a>
+    </div>
+  </section>
+
+  
+  <section id="services" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Paketi usluga</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title text-warning">Basic</h5>
+              <ul class="list-unstyled">
+                <li>✔️ Spoljno pranje</li>
+                <li>✔️ Felne</li>
+                <li>✔️ Brisanje stakla</li>
+              </ul>
+              <p class="fw-bold mt-3">Cena: 2000 RSD</p>
+              <a href="services/basic.html" class="btn btn-outline-warning">Vise</a>
+              <a href="reservation.html" class="btn btn-outline-warning">Zakaži</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title text-warning">Standard</h5>
+              <ul class="list-unstyled">
+                <li>✔️ Spoljno + unutrašnje</li>
+                <li>✔️ Usisavanje</li>
+                <li>✔️ Dezinfekcija</li>
+              </ul>
+              <p class="fw-bold mt-3">Cena: 3500 RSD</p>
+              <a href="services/standard.html" class="btn btn-outline-warning">Vise</a>
+              <a href="reservation.html" class="btn btn-outline-warning">Zakaži</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title text-warning">Premium</h5>
+              <ul class="list-unstyled">
+                <li>✔️ Detaljno čišćenje</li>
+                <li>✔️ Poliranje</li>
+                <li>✔️ Zaštita laka</li>
+              </ul>
+              <p class="fw-bold mt-3">Cena: 6000 RSD</p>
+              <a href="services/premium.html" class="btn btn-outline-warning">Vise</a>
+              <a href="reservation.html" class="btn btn-outline-warning">Zakaži</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="gallery" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Galerija pre i posle</h2>
+      <div class="row g-3 justify-content-center">
+        <div class="col-6 col-sm-4 col-md-4 col-lg 6">
+          <img src="pictures/pre-posle1.jpeg" class="gallery-img" alt="Pre i posle">
+        </div>
+        <div class="col-6 col-sm-4 col-md-4 col-lg 6">
+          <img src="pictures/pre-posle2.jpg" class="gallery-img" alt="Pre i posle">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="reviews" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center mb-4">Recenzije</h2>
+      <div class="row">
+        <div class="col-md-6">
+          <blockquote class="blockquote">
+            <p>„Auto izgleda kao nov! Preporučujem 100%.”</p>
+            <footer class="blockquote-footer">Nikola, BMW 320d</footer>
+          </blockquote>
+        </div>
+        <div class="col-md-6">
+          <blockquote class="blockquote">
+            <p>„Unutrašnjost je besprekorno čista!”</p>
+            <footer class="blockquote-footer">Milica, Audi A3</footer>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="contact" class="py-5">
+    <div class="container">
+      <h2 class="text-center mb-4">Kontakt</h2>
+      <div class="d-flex justify-content-center mt-5">
+    <div class="d-flex flex-column mx-5">
+  <div class="p-2">
+    <i class="fa-solid fa-mobile-screen-button fa-8x mx-5"></i>
+  </div>
+  <div class="p-2 mx-3">Mob: 066/ 111-11-11</div>
+  <div class="p-2">Email: lazar.danic.23@signimail.rs</div>
+
+</div>
+<div class="d-flex flex-column mx-5">
+  <div class="p-2"><i class="fa-regular fa-clock fa-8x mx-5"></i></div>
+  <div class="p-2">Ponedeljak - Petak 8:00 - 17:00</div>
+  <div class="p-2 mx-2">Subota - Nedelja: zatvoreno.</div>
+</div>
+<div class="d-flex flex-column mx-5">
+  <div class="p-2"><i class="fa-solid fa-map-pin fa-8x mx-5"></i></div>
+  <div class="p-2">Bulevar Peka Dapcevica 47a,</div>
+  <div class="p-2 mx-5">11000 Beograd</div>
+</div>   
+  </div>
+  <div class="location mt-5">
+    <iframe class="map-container" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2833.0494804885348!2d20.4965696!3d44.7594056!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a70e01f084941%3A0x31dff72cba2cff83!2z0KPQvdC40LLQtdGA0LfQuNGC0LXRgiDQodC40L3Qs9C40LTRg9C90YPQvA!5e0!3m2!1ssr!2srs!4v1747737863520!5m2!1ssr!2srs" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+  </div>
+    </div>
+  </section>
+
+  
+  <footer class="bg-dark text-light py-3 text-center">
+    <div class="container">
+      <small>&copy; 2025 Auto Detailing Studio. Sva prava zadržana.</small>
+    </div>
+  </footer>
+</body>
+</html>
