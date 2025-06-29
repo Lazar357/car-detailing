@@ -1,7 +1,16 @@
 package rs.ac.signidunum.repo;
 
-import rs.ac.signidunum.model.Customer;
+import org.springframework.stereotype.Repository;
+import rs.ac.signidunum.entity.Customer;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
+import java.util.List;
+import java.util.Optional;
+
+@Repository
+public interface CustomerRepository extends JpaRepository<Customer, Integer> {
+
+    List<Customer> findByDeletedAtIsNull();
+    Optional<Customer> findByIdAndDeletedAtIsNull(Integer id);
+    Boolean existsByIdAndDeletedAtIsNull(Integer id);
 }
