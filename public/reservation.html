@@ -1,180 +1,201 @@
 <!DOCTYPE html>
-<html lang="sr">
+<html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Rezervacija Termina</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
-  <style>
-    body {
-      background-color: #f8f9fa;
-    }
-
-    .form-section {
-      max-width: 600px;
-      margin: 50px auto;
-      padding: 30px;
-      background-color: white;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rezervacije</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        .content {
+            flex: 1;
+            padding-bottom: 60px; 
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            width: 100%;
+        }
+        .navbar {
+            background-color: #343a40;
+        }
+        .table-container {
+            min-height: 300px; 
+        }
+    </style>
 </head>
-<body>
-
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <div class="container">
-      <a class="navbar-brand" href="index.html">Auto Detailing</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="index.html#services">Usluge</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#gallery">Galerija</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#reviews">Recenzije</a></li>
-          <li class="nav-item"><a class="nav-link" href="index.html#contact">Kontakt</a></li>
-        </ul>
-      </div>
+<body data-bs-theme="dark">
+    <div class="content">
+        <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+                <div class="container">
+                    <a class="navbar-brand" href="./index.html">Auto Detailing Barajevo</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav ms-auto">
+                            <li class="nav-item"><a class="nav-link" href="./customer.html">Musterije</a></li>
+                            <li class="nav-item"><a class="nav-link active" href="./reservation.html">Rezervacije</a></li>
+                            <li class="nav-item"><a class="nav-link" href="./index.html#contact">Kontakt</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        <div class="container">
+            <h3>Rezervacije</h3>
+            <a href="./new/reservation.html" class="btn btn-sm btn-primary mb-3">+ Dodaj Rezervaciju</a>
+            
+            <div class="table-container">
+                <table class="table table-hover table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col"><i class="fa-solid fa-hashtag"></i></th>
+                            <th scope="col"><i class="fa-solid fa-user"></i> Korisnik</th>
+                            <th scope="col"><i class="fa-solid fa-car-side"></i> Vozilo</th>
+                            <th scope="col"><i class="fa-solid fa-cart-shopping"></i></i> Usluga</th>
+                            <th scope="col"><i class="fa-solid fa-calendar-days"></i> Datum</th>
+                            <th scope="col"><i class="fa-solid fa-clock"></i>Vreme</th>
+                            <th scope="col"><i class="fa-solid fa-clock-rotate-left"></i> Izmenjeno</th>
+                            <th scope="col"><i class="fa-solid fa-pen-to-square"></i> Opcije</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </div>
     </div>
-  </nav>
 
-  <div class="container">
-    <div class="form-section">
-      <h2>Rezervacija Termina</h2>
-      <form id="bookingForm">
-        <div class="mb-3">
-          <label for="ime" class="form-label">Ime</label>
-          <input type="text" class="form-control" id="ime" name="ime" required>
+    <footer class="text-center py-3 mt-auto">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>Radno vreme</h5>
+                    <p>Ponedeljak - Petak: 8:00 - 17:00<br>
+                    Subota - Nedelja: zatvoreno</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h5>Kontakt</h5>
+                    <p><i class="fas fa-phone me-2"></i> 066/111-11-11<br>
+                    <i class="fas fa-envelope me-2"></i> lazar.danic.23@signimail.rs</p>
+                </div>
+                <div class="col-md-4">
+                    <h5>Adresa</h5>
+                    <p><i class="fas fa-map-marker-alt me-2"></i> Bulevar Peka Dapcevica 47a,<br>11000 Beograd</p>
+                </div>
+            </div>
+            <hr class="my-3 bg-light">
+            <p class="mb-0">&copy; 2025 Auto Detailing Barajevo. Sva prava zadržana.</p>
         </div>
+    </footer>
 
-        <div class="mb-3">
-          <label for="prezime" class="form-label">Prezime</label>
-          <input type="text" class="form-control" id="prezime" name="prezime" required>
-        </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        window.onload = async () => {
+            try {
+                const response = await axios.get("http://localhost:8080/api/booking");
+                console.log("Podaci sa servera:", response.data);
+                
+                const tableBody = document.getElementById('tableBody');
+                tableBody.innerHTML = "";
 
-        <div class="mb-3">
-          <label for="telefon" class="form-label">Telefon</label>
-          <input type="tel" class="form-control" id="telefon" name="telefon" required>
-        </div>
+                if (!Array.isArray(response.data)) {
+                    throw new Error("Server nije vratio niz rezervacija");
+                }
 
-        <div class="mb-3">
-          <label for="email" class="form-label">Email adresa</label>
-          <input type="email" class="form-control" id="email" name="email">
-        </div>
+                response.data.forEach(booking => {
+                    const row = document.createElement('tr');
+                     
+                    const idCell = document.createElement('th');
+                    idCell.scope = 'row';
+                    idCell.textContent = booking.id;
+                    row.appendChild(idCell);
+                    
+                    const userCell = document.createElement('td');
+                    if (booking.customer) {
+                        userCell.textContent = `${booking.customer.name || 'Nepoznato'} (${booking.customer.phone || 'Nepoznat telefon'})`;
+                    } else {
+                        userCell.textContent = 'Nepoznat korisnik';
+                    }
+                    row.appendChild(userCell);
+                    
+                    const vehicleCell = document.createElement('td');
+                    vehicleCell.textContent = `${booking.vehicle || 'Nepoznato'} (${booking.vehicle-type || N/A})`;
+                    row.appendChild(vehicleCell);
 
-        <div class="mb-3">
-          <label for="vozilo" class="form-label">Marka i model vozila</label>
-          <input type="text" class="form-control" id="vozilo" name="vozilo" required>
-        </div>
+                    const serviceCell = document.createElement('td');
+                    serviceCell.textContent = booking.service || 'Nepoznato';
+                    row.appendChild(serviceCell);
 
-        <div class="mb-3">
-          <label for="usluga" class="form-label">Usluga</label>
-          <select class="form-select" id="usluga" name="usluga" required>
-            <option selected disabled>Izaberi uslugu</option>
-            <option value="basic">Basic detailing</option>
-            <option value="standard">Standard detailing</option>
-            <option value="premium">Premium detailing</option>
-          </select>
-        </div>
+                    const dateCell = document.createElement('td');
+                    dateCell.textContent = booking.date || 'Nepoznato';
+                    row.appendChild(dateCell);
 
-        <div class="mb-3">
-          <label for="datum" class="form-label">Datum termina</label>
-          <input type="date" class="form-control" id="datum" name="datum" required>
-        </div>
+                    const timeCell = document.createElement('td');
+                    timeCell.textContent = booking.time || 'Nepoznato';
+                    row.appendChild(timeCell);
 
-        <div class="text-center">
-          <button type="submit" class="btn btn-primary">Zakaži termin</button>
-        </div>
-      </form>
-    </div>
-  </div>
+                    const updatedCell = document.createElement('td');
+                    updatedCell.textContent = booking.updatedAt ? 
+                        new Date(booking.updatedAt).toLocaleString() : 'N/A';
+                    row.appendChild(updatedCell);
 
+                    const optionsCell = document.createElement('td');
+                    optionsCell.innerHTML = `
+                        <div class="btn-group">
+                            <a href="./edit/reservation.html?id=${booking.id}" class="btn btn-sm btn-success" title="Izmeni">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <button type="button" class="btn btn-sm btn-danger delete-btn" data-id="${booking.id}" title="Obriši">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </div>
+                    `;
+                    row.appendChild(optionsCell);
+                    
+                    tableBody.appendChild(row);
+                });
 
-  
-  <footer class="bg-dark text-light py-3 text-center">
-    <div class="container">
-      <small>&copy; 2025 Auto Detailing Studio. Sva prava zadržana.</small>
-    </div>
-  </footer>
+                document.querySelectorAll('.delete-btn').forEach(btn => {
+                    btn.addEventListener('click', async function() {
+                        const bookingId = this.getAttribute('data-id');
+                        if (confirm(`Da li ste sigurni da želite da obrišete rezervaciju ${bookingId}?`)) {
+                            try {
+                                await axios.delete(`http://localhost:8080/api/booking/${bookingId}`);
+                                window.location.reload();
+                            } catch (error) {
+                                console.error("Greška pri brisanju:", error);
+                                alert(`Greška: ${error.response?.data?.message || "Ne možemo obrisati rezervaciju"}`);
+                            }
+                        }
+                    });
+                });
 
-
-<script>
-  document.getElementById('bookingForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const formData = {
-      ime: document.getElementById('ime').value,
-      prezime: document.getElementById('prezime').value,
-      telefon: document.getElementById('telefon').value,
-      email: document.getElementById('email').value,
-      vozilo: document.getElementById('vozilo').value,
-      usluga: document.getElementById('usluga').value,
-      datum: document.getElementById('datum').value
-    };
-
-    const payload = {
-      service: formData.usluga,
-      date: formData.datum,
-      customer: {
-        name: formData.ime + " " + formData.prezime,
-        email: formData.email,
-        phone: formData.telefon
-      }
-    };
-
-    fetch("http://localhost:8080/api/bookings", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    })
-            .then(response => {
-              if (response.ok) {
-                alert("Uspešno zakazan termin!");
-                document.getElementById("bookingForm").reset();
-              } else {
-                alert("Došlo je do greške pri slanju forme.");
-              }
-            })
-            .catch(error => {
-              console.error("Greška:", error);
-              alert("Greška u mrežnoj komunikaciji.");
-            });
-  });
-
-  fetch("http://localhost:8080/api/bookings", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify(payload)
-  })
-          .then(async response => {
-            const responseBody = await response.text();
-            console.log("Status:", response.status);
-            console.log("Response:", responseBody);
-
-            if (response.ok) {
-              alert("Uspešno zakazan termin!");
-              document.getElementById("bookingForm").reset();
-            } else {
-              alert("Došlo je do greške pri slanju forme.\nStatus: " + response.status + "\n" + responseBody);
+            } catch (error) {
+                console.error("Detaljna greška:", {
+                    message: error.message,
+                    response: error.response?.data,
+                    stack: error.stack
+                });
+                alert("Došlo je do greške pri učitavanju rezervacija. Proverite konzolu za više detalja.");
             }
-          })
-          .catch(error => {
-            console.error("Greška:", error);
-            alert("Greška u mrežnoj komunikaciji.");
-          });
-
-</script>
-
+        };
+    </script>
 </body>
 </html>

@@ -10,12 +10,13 @@
   <style>
     .hero {
       background: url('pictures/pocetna.jpg') center center/cover no-repeat;
-      height: 80vh;
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       position: relative;
+      height: 90vh; 
+      background-attachment: fixed;
     }
 
     .hero::after {
@@ -29,7 +30,12 @@
       position: relative;
       text-align: center;
       z-index: 1;
+      animation: fadeIn 1.5s ease-out;
     }
+    @keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
 
     .gallery-img {
       width: 370px;
@@ -40,6 +46,35 @@
       width: 100%;
       height: 700px;
     }
+    footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        #contact .fa-solid, #contact .fa-regular {
+  font-size: 3rem; /* Smanji ikone */
+  margin-bottom: 1rem;
+  color: #ffc107; /* Žuta boja koja se koristi */
+  transition: transform 0.3s;
+}
+
+#contact .fa-solid:hover, #contact .fa-regular:hover {
+  transform: scale(1.1);
+}
+@media (max-width: 768px) {
+  .hero {
+    height: 70vh;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+  
+  #contact .d-flex {
+    flex-direction: column;
+  }
+}
   </style>
 </head>
 <body>
@@ -53,8 +88,8 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link" href="./customers.html">Musterije</a></li>
-          <li class="nav-item"><a class="nav-link" href="./reservations.html">Rezervacije</a></li>
+          <li class="nav-item"><a class="nav-link" href="./customer.html">Musterije</a></li>
+          <li class="nav-item"><a class="nav-link" href="./reservation.html">Rezervacije</a></li>
           <li class="nav-item"><a class="nav-link" href="#contact">Kontakt</a></li>
         </ul>
       </div>
@@ -66,7 +101,7 @@
     <div class="hero-content">
       <h1 class="display-4">Vratite sjaj svom automobilu</h1>
       <p class="lead">Profesionalni auto detailing u Beogradu</p>
-      <a href="reservation.html" class="btn btn-warning btn-lg">Zakaži termin</a>
+      <a href="./new/reservation.html" class="btn btn-warning btn-lg">Zakaži termin</a>
     </div>
   </section>
 
@@ -84,9 +119,9 @@
                 <li>✔️ Felne</li>
                 <li>✔️ Brisanje stakla</li>
               </ul>
-              <p class="fw-bold mt-3">Cena: 2000 RSD</p>
+              <p class="fw-bold mt-3">Cena: 5000 RSD</p>
               <a href="services/basic.html" class="btn btn-outline-warning">Vise</a>
-              <a href="reservation.html" class="btn btn-outline-warning">Zakaži</a>
+              <a href="./new/reservation.html" class="btn btn-outline-warning">Zakaži</a>
             </div>
           </div>
         </div>
@@ -99,9 +134,9 @@
                 <li>✔️ Usisavanje</li>
                 <li>✔️ Dezinfekcija</li>
               </ul>
-              <p class="fw-bold mt-3">Cena: 3500 RSD</p>
+              <p class="fw-bold mt-3">Cena: 8000 RSD</p>
               <a href="services/standard.html" class="btn btn-outline-warning">Vise</a>
-              <a href="reservation.html" class="btn btn-outline-warning">Zakaži</a>
+              <a href="./new/reservation.html" class="btn btn-outline-warning">Zakaži</a>
             </div>
           </div>
         </div>
@@ -114,9 +149,9 @@
                 <li>✔️ Poliranje</li>
                 <li>✔️ Zaštita laka</li>
               </ul>
-              <p class="fw-bold mt-3">Cena: 6000 RSD</p>
+              <p class="fw-bold mt-3">Cena: 12000 RSD</p>
               <a href="services/premium.html" class="btn btn-outline-warning">Vise</a>
-              <a href="reservation.html" class="btn btn-outline-warning">Zakaži</a>
+              <a href="./new/reservation.html" class="btn btn-outline-warning">Zakaži</a>
             </div>
           </div>
         </div>
@@ -126,17 +161,16 @@
 
   
   <section id="gallery" class="py-5">
-    <div class="container">
-      <h2 class="text-center mb-4">Galerija pre i posle</h2>
-      <div class="row g-3 justify-content-center">
-        <div class="col-6 col-sm-4 col-md-4 col-lg 6">
-          <img src="pictures/pre-posle1.jpeg" class="gallery-img" alt="Pre i posle">
-        </div>
-        <div class="col-6 col-sm-4 col-md-4 col-lg 6">
-          <img src="pictures/pre-posle2.jpg" class="gallery-img" alt="Pre i posle">
-        </div>
-      </div>
-    </div>
+    <div class="row g-3 justify-content-center">
+  <div class="col-6 col-sm-4 col-md-4 col-lg-6">
+    <img src="pictures/pre-posle1.jpeg" loading="lazy" class="gallery-img img-fluid" alt="Pre i posle" 
+         data-bs-toggle="modal" data-bs-target="#galleryModal1">
+  </div>
+  <div class="col-6 col-sm-6 col-md-6 col-lg-6">
+    <img src="pictures/pre-posle2.jpg" loading="lazy" class="gallery-img img-fluid" alt="Pre i posle" 
+         data-bs-toggle="modal" data-bs-target="#galleryModal1">
+  </div>
+</div>
   </section>
 
   
@@ -192,10 +226,27 @@
   </section>
 
   
-  <footer class="bg-dark text-light py-3 text-center">
+  <footer class="text-center py-3">
     <div class="container">
-      <small>&copy; 2025 Auto Detailing Studio. Sva prava zadržana.</small>
+        <div class="row">
+            <div class="col-md-4 mb-3 mb-md-0">
+                <h5>Radno vreme</h5>
+                <p>Ponedeljak - Petak: 8:00 - 17:00<br>
+                Subota - Nedelja: zatvoreno</p>
+            </div>
+            <div class="col-md-4 mb-3 mb-md-0">
+                <h5>Kontakt</h5>
+                <p><i class="fas fa-phone me-2"></i> 066/111-11-11<br>
+                <i class="fas fa-envelope me-2"></i> lazar.danic.23@signimail.rs</p>
+            </div>
+            <div class="col-md-4">
+                <h5>Adresa</h5>
+                <p><i class="fas fa-map-marker-alt me-2"></i> Bulevar Peka Dapcevica 47a,<br>11000 Beograd</p>
+            </div>
+        </div>
+        <hr class="my-3 bg-light">
+        <p class="mb-0">&copy; 2025 Auto Detailing Barajevo. Sva prava zadržana.</p>
     </div>
-  </footer>
+</footer>
 </body>
 </html>
