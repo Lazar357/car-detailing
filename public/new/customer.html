@@ -62,7 +62,7 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="../customer.html">Musterije</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../customer.html">Korisnici</a></li>
                     <li class="nav-item"><a class="nav-link" href="../reservation.html">Rezervacije</a></li>
                     <li class="nav-item"><a class="nav-link" href="../index.html#contact">Kontakt</a></li>
                 </ul>
@@ -151,7 +151,7 @@ document.getElementById('customerForm').addEventListener('submit', async functio
         const responseData = await response.json();
 
         if (response.ok) {
-            showAlert('success', 'Mušterija uspešno dodata!');
+            showAlert('success', 'Korisnik uspešno dodat!');
             document.getElementById("customerForm").reset();
             
             setTimeout(() => {
@@ -166,7 +166,7 @@ document.getElementById('customerForm').addEventListener('submit', async functio
         showAlert('danger', 'Mrežna greška. Pokušajte ponovo.');
     } finally {
         document.getElementById('spinner').classList.add('d-none');
-        document.getElementById('submitText').textContent = 'Dodaj mušteriju';
+        document.getElementById('submitText').textContent = 'Dodaj korisnika';
     }
 });
 

@@ -136,7 +136,7 @@
                     row.appendChild(userCell);
                     
                     const vehicleCell = document.createElement('td');
-                    vehicleCell.textContent = `${booking.vehicle || 'Nepoznato'} (${booking.vehicle-type || N/A})`;
+                    vehicleCell.textContent = booking.vehicle || 'Nepoznato';
                     row.appendChild(vehicleCell);
 
                     const serviceCell = document.createElement('td');

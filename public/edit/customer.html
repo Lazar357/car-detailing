@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Izmena Korisnika - Auto Detailing</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+    <style>
+        body {
+            background-color: var(--bs-dark-bg-subtle);
+        }
+        
+        .form-section {
+            max-width: 800px;
+            margin: 30px auto;
+            padding: 30px;
+            background-color: var(--bs-body-bg);
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .form-title {
+            color: var(--bs-primary);
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+        
+        .section-title {
+            color: var(--bs-warning);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--bs-border-color);
+        }
+        
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        
+        .btn-submit {
+            min-width: 150px;
+        }
+        
+        .btn-back {
+            min-width: 100px;
+        }
+        
+        @media (max-width: 768px) {
+            .form-section {
+                padding: 20px;
+                margin: 15px;
+            }
+        }
+    </style>
+</head>
+<body data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="../index.html">
+                <i class="fas fa-car me-2"></i>Auto Detailing
+            </a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="form-section">
+            <h2 class="form-title text-center">Izmena Korisnika</h2>
+
+            <div id="loadingSpinner" class="text-center my-5">
+                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
+                    <span class="visually-hidden">Učitavanje...</span>
+                </div>
+                <p class="mt-3">Učitavanje podataka o korisniku...</p>
+            </div>
+            
+            <form id="editCustomerForm" style="display: none;">
+                <div class="row mb-4">
+                    <h4 class="section-title">Osnovni podaci</h4>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="name" class="form-label">
+                            <i class="fas fa-user me-2"></i>Ime i prezime
+                        </label>
+                        <input type="text" class="form-control form-control-lg" id="name" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="phone" class="form-label">
+                            <i class="fas fa-phone me-2"></i>Telefon
+                        </label>
+                        <input type="tel" class="form-control form-control-lg" id="phone" required>
+                    </div>
+                    
+                    <div class="col-md-6 mb-3">
+                        <label for="email" class="form-label">
+                            <i class="fas fa-envelope me-2"></i>Email
+                        </label>
+                        <input type="email" class="form-control form-control-lg" id="email">
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <h4 class="section-title">Dodatne informacije</h4>
+                    
+                    <div class="col-12 mb-3">
+                        <label for="notes" class="form-label">
+                            <i class="fas fa-sticky-note me-2"></i>Napomene
+                        </label>
+                        <textarea class="form-control" id="notes" rows="4" style="resize: none;"></textarea>
+                    </div>
+                </div>
+
+                <div class="d-grid gap-3 d-md-flex justify-content-md-end mt-4">
+                    <button type="button" class="btn btn-outline-secondary btn-back" onclick="window.history.back()">
+                        <i class="fas fa-arrow-left me-2"></i>Nazad
+                    </button>
+                    <button type="submit" class="btn btn-primary btn-submit">
+                        <i class="fas fa-save me-2"></i>Sačuvaj izmene
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const customerId = urlParams.get('id');
+            
+            if (!customerId) {
+                showError('Nije pronađen korisnik');
+                window.location.href = '../customer.html';
+                return;
+            }
+
+            try {
+                const response = await axios.get(`http://localhost:8080/api/customers/${customerId}`);
+                const customer = response.data;
+
+                document.getElementById('name').value = customer.name || '';
+                document.getElementById('phone').value = customer.phone || '';
+                document.getElementById('email').value = customer.email || '';
+                document.getElementById('notes').value = customer.notes || '';
+
+                document.getElementById('loadingSpinner').style.display = 'none';
+                document.getElementById('editCustomerForm').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Greška pri učitavanju:', error);
+                showError('Došlo je do greške pri učitavanju podataka korisnika');
+                window.location.href = '../customer.html';
+            }
+        });
+
+        document.getElementById('editCustomerForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const urlParams = new URLSearchParams(window.location.search);
+            const customerId = urlParams.get('id');
+            
+            try {
+                const formData = {
+                    name: document.getElementById('name').value.trim(),
+                    phone: document.getElementById('phone').value.trim(),
+                    email: document.getElementById('email').value.trim(),
+                    notes: document.getElementById('notes').value.trim()
+                };
+                if (!formData.name || !formData.phone) {
+                    throw new Error('Ime i telefon su obavezna polja');
+                }
+
+                const response = await axios.put(
+                    `http://localhost:8080/api/customers/${customerId}`,
+                    formData
+                );
+                showSuccess('Podaci korisnika uspešno ažurirani!');
+                setTimeout(() => {
+                    window.location.href = '../customer.html';
+                }, 1500);
+                
+            } catch (error) {
+                console.error('Greška pri ažuriranju:', error);
+                showError(error.response?.data?.message || error.message || 'Došlo je do greške pri ažuriranju podataka');
+            }
+        function showSuccess(message) {
+            alert(message); 
+        }
+        function showError(message) {
+            alert(message); 
+        }
+    });
+    </script>
+</body>
+</html>
